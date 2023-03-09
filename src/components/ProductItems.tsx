@@ -1,11 +1,10 @@
-import { useState } from "react";
 import "./ProductList.css";
 
 type Props = {
   title: string;
   description: string;
-  price: number;
   currencyName: string;
+  price: number;
 };
 
 const ProductItems = ({ title, description, currencyName, price }: Props) => {
@@ -16,7 +15,7 @@ const ProductItems = ({ title, description, currencyName, price }: Props) => {
       <div>
         <p>
           {currencyName}
-          <span className="currency">{price}</span>
+          <span className="price">{price}</span>
         </p>
       </div>
       <button>Buy</button>

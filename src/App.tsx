@@ -1,11 +1,11 @@
 import { Container } from "@mui/material";
 import "./App.css";
-import ProductList from "./components/ProductList";
+import Main from "./container/Main";
 
 function App() {
   return (
     <Container maxWidth="md">
-      <ProductList />
+      <Main price={15000} />
     </Container>
   );
 }

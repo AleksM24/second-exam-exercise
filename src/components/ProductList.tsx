@@ -4,10 +4,19 @@ import productsArray from "../utils/productsArray";
 import ProductItems from "./ProductItems";
 import "./ProductList.css";
 
-type Props = {};
+type Props = {
+  price: number;
+};
 
-const ProductList = (props: Props) => {
+const ProductList = ({ price }: Props) => {
   const [currencyName, setCurrencyName] = useState("UAH");
+  const [convertPrice, setConvertPrice] = useState(price);
+
+  function handleClick() {
+    setCurrencyName("USD");
+  }
+  console.log(convertPrice);
+
   return (
     <section>
       <div>
@@ -15,9 +24,9 @@ const ProductList = (props: Props) => {
       </div>
       <div className="currency-btns">
         <button onClick={() => setCurrencyName("UAH")}>UAH</button>
-        <button onClick={() => setCurrencyName("USD")}>USD</button>
+        <button onClick={() => handleClick()}>USD</button>
         <button onClick={() => setCurrencyName("EUR")}>EUR</button>
-        <button onClick={() => setCurrencyName("GBP")}>GBP</button>
+        <button onClick={() => setConvertPrice(convertPrice / 37)}>GBP</button>
       </div>
       <Grid
         container
@@ -30,14 +39,14 @@ const ProductList = (props: Props) => {
             <ProductItems
               title={title}
               description={description}
-              price={price}
               currencyName={currencyName}
+              price={price}
             />
           </Grid>
         ))}
       </Grid>
       <div className="total-section">
-        <h5 className="total-title">Total:</h5> <span>82000</span>
+        <h5 className="total-title">Total:</h5> <span>79000</span>
       </div>
     </section>
   );
