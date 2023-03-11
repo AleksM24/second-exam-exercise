@@ -16,10 +16,10 @@ type currencyRatesType = {
 };
 
 export const currencyRates: currencyRatesType = {
-  ["UAH"]: 1,
-  ["USD"]: 37,
-  ["EUR"]: 40,
-  ["GBP"]: 43,
+  "UAH": 1,
+  "USD": 37,
+  "EUR": 40,
+  "GBP": 43,
 };
 
 const ProductItems = ({
