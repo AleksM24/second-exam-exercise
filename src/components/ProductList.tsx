@@ -1,18 +1,26 @@
 import { Grid } from "@mui/material";
 import { useState } from "react";
-import currencyArray from "../utils/currencyArray";
 import productsArray from "../utils/productsArray";
-import ProductItems from "./ProductItems";
+import ProductItems, { currencyRates } from "./ProductItems";
 import "./ProductList.css";
 
 type Props = {};
 
+type CartDataProps = {
+  totalPrice: number;
+};
+
 const ProductList = (props: Props) => {
   const [currencyName, setCurrencyName] = useState("UAH");
-  const [count, setCount] = useState<number>(0);
-  const handleClick = (item: any) => {
-    setCount(() => item.id);
-    console.log(item.id);
+
+  const [cartData, setCartData] = useState<CartDataProps>({
+    totalPrice: 0,
+  });
+
+  const AddProductToTotal = (price: number) => {
+    setCartData((prevState) => ({
+      totalPrice: prevState.totalPrice + price,
+    }));
   };
 
   return (
@@ -39,12 +47,17 @@ const ProductList = (props: Props) => {
               description={description}
               currencyName={currencyName}
               price={price}
+              cartData={cartData}
+              AddProductToTotal={AddProductToTotal}
             />
           </Grid>
         ))}
       </Grid>
       <div className="total-section">
-        <h5 className="total-title">Total:</h5> <span>0</span>
+        <h5 className="total-title">Total:</h5>{" "}
+        <span>
+          {Math.round(cartData.totalPrice / currencyRates[currencyName])}
+        </span>
       </div>
     </section>
   );

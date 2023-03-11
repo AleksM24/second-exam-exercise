@@ -5,20 +5,30 @@ type Props = {
   description: string;
   currencyName: string;
   price: number;
+  cartData: {
+    totalPrice: number;
+  };
+  AddProductToTotal: (price: number) => void;
 };
 
-type currencyRates = {
+type currencyRatesType = {
   [id: string]: number;
 };
 
-export const currencyRates: currencyRates = {
+export const currencyRates: currencyRatesType = {
   ["UAH"]: 1,
   ["USD"]: 37,
   ["EUR"]: 40,
   ["GBP"]: 43,
 };
 
-const ProductItems = ({ title, description, currencyName, price }: Props) => {
+const ProductItems = ({
+  AddProductToTotal,
+  title,
+  description,
+  currencyName,
+  price,
+}: Props) => {
   return (
     <div className="product-card">
       <h3>{title}</h3>
@@ -31,7 +41,7 @@ const ProductItems = ({ title, description, currencyName, price }: Props) => {
           </span>
         </p>
       </div>
-      <button>Buy</button>
+      <button onClick={() => AddProductToTotal(price)}>Buy</button>
     </div>
   );
 };
