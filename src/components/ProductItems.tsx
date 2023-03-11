@@ -7,6 +7,17 @@ type Props = {
   price: number;
 };
 
+type currencyRates = {
+  [id: string]: number;
+};
+
+export const currencyRates: currencyRates = {
+  ["UAH"]: 1,
+  ["USD"]: 37,
+  ["EUR"]: 40,
+  ["GBP"]: 43,
+};
+
 const ProductItems = ({ title, description, currencyName, price }: Props) => {
   return (
     <div className="product-card">
@@ -15,7 +26,9 @@ const ProductItems = ({ title, description, currencyName, price }: Props) => {
       <div>
         <p>
           {currencyName}
-          <span className="price">{price}</span>
+          <span className="price">
+            {Math.round(price / currencyRates[currencyName])}
+          </span>
         </p>
       </div>
       <button>Buy</button>

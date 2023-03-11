@@ -1,21 +1,19 @@
 import { Grid } from "@mui/material";
 import { useState } from "react";
+import currencyArray from "../utils/currencyArray";
 import productsArray from "../utils/productsArray";
 import ProductItems from "./ProductItems";
 import "./ProductList.css";
 
-type Props = {
-  price: number;
-};
+type Props = {};
 
-const ProductList = ({ price }: Props) => {
+const ProductList = (props: Props) => {
   const [currencyName, setCurrencyName] = useState("UAH");
-  const [convertPrice, setConvertPrice] = useState(price);
-
-  function handleClick() {
-    setCurrencyName("USD");
-  }
-  console.log(convertPrice);
+  const [count, setCount] = useState<number>(0);
+  const handleClick = (item: any) => {
+    setCount(() => item.id);
+    console.log(item.id);
+  };
 
   return (
     <section>
@@ -24,9 +22,9 @@ const ProductList = ({ price }: Props) => {
       </div>
       <div className="currency-btns">
         <button onClick={() => setCurrencyName("UAH")}>UAH</button>
-        <button onClick={() => handleClick()}>USD</button>
+        <button onClick={() => setCurrencyName("USD")}>USD</button>
         <button onClick={() => setCurrencyName("EUR")}>EUR</button>
-        <button onClick={() => setConvertPrice(convertPrice / 37)}>GBP</button>
+        <button onClick={() => setCurrencyName("GBP")}>GBP</button>
       </div>
       <Grid
         container
@@ -46,7 +44,7 @@ const ProductList = ({ price }: Props) => {
         ))}
       </Grid>
       <div className="total-section">
-        <h5 className="total-title">Total:</h5> <span>79000</span>
+        <h5 className="total-title">Total:</h5> <span>0</span>
       </div>
     </section>
   );

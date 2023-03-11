@@ -5,7 +5,7 @@ import Main from "./container/Main";
 function App() {
   return (
     <Container maxWidth="md">
-      <Main price={15000} />
+      <Main />
     </Container>
   );
 }

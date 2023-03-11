@@ -1,13 +1,11 @@
 import ProductList from "../components/ProductList";
 
-type Props = {
-  price: number;
-};
+type Props = {};
 
-const Main = ({ price }: Props) => {
+const Main = (props: Props) => {
   return (
     <div>
-      <ProductList price={price} />
+      <ProductList />
     </div>
   );
 };
